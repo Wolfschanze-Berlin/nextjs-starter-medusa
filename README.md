@@ -64,8 +64,31 @@ Features include:
   - Server Actions
   - Streaming
   - Static Pre-Rendering
+- **Development Container**: Pre-configured containerized development environment with all dependencies
 
 # Quickstart
+
+## Development Container (Recommended)
+
+For the fastest and most consistent setup experience, use the provided development container:
+
+1. **Prerequisites**: Install [VS Code](https://code.visualstudio.com/), [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers), and [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+2. **Open in Dev Container**:
+   ```bash
+   code .
+   ```
+   Click "Reopen in Container" when prompted, or use Command Palette → "Dev Containers: Reopen in Container"
+
+3. **Start developing**:
+   ```bash
+   yarn dev
+   ```
+   Your site will be running at http://localhost:8000!
+
+The devcontainer includes Node.js 20, PostgreSQL, all necessary VS Code extensions, and automatic dependency installation. See [.devcontainer/README.md](.devcontainer/README.md) for detailed documentation.
+
+## Manual Setup
 
 ### Setting up the environment variables
 
