@@ -10,20 +10,18 @@ RUN apt-get update && apt-get install -y \
     vim \
     nano \
     postgresql-client \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Corepack for Yarn 3.x support
 RUN corepack enable
 
+# Create a non-root user (node user already exists in the base image)
+# Just ensure proper ownership of workspace
+RUN mkdir -p /workspace && chown -R node:node /workspace
+
 # Set the working directory
 WORKDIR /workspace
-
-# Create a non-root user
-RUN groupadd --gid 1000 node \
-    && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
-
-# Set up proper permissions
-RUN chown -R node:node /workspace
 
 # Switch to non-root user
 USER node
@@ -31,3 +29,6 @@ USER node
 # Set environment variables
 ENV NODE_ENV=development
 ENV SHELL=/bin/bash
+
+# Verify installations
+RUN node --version && npm --version && corepack --version
